@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
-public abstract class ModEntityDataSaver implements IEntityDataSaver {
+public abstract class PlayerEntityMixin implements IEntityDataSaver {
     @Unique
     private boolean milkBlocked = false;
 

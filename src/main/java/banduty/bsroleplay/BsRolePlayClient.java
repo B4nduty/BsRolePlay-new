@@ -1,13 +1,14 @@
+
 package banduty.bsroleplay;
 
 import banduty.bsroleplay.block.entity.ModBlockEntities;
+import banduty.bsroleplay.block.entity.client.TinyBandutyRenderer;
 import banduty.bsroleplay.block.entity.client.coins.AmethystCoinRenderer;
 import banduty.bsroleplay.block.entity.client.coins.CopperCoinRenderer;
 import banduty.bsroleplay.block.entity.client.coins.GoldCoinRenderer;
 import banduty.bsroleplay.block.entity.client.coins.NetheriteCoinRenderer;
 import banduty.bsroleplay.block.entity.client.coins.stack.AmethystCoinStackRenderer;
 import banduty.bsroleplay.block.entity.client.coins.stack.CopperCoinStackRenderer;
-import banduty.bsroleplay.block.entity.client.TinyBandutyRenderer;
 import banduty.bsroleplay.block.entity.client.coins.stack.GoldCoinStackRenderer;
 import banduty.bsroleplay.block.entity.client.coins.stack.NetheriteCoinStackRenderer;
 import banduty.bsroleplay.item.ModItems;
@@ -18,7 +19,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.item.DyeableItem;
-import net.minecraft.item.Item;
 
 public class BsRolePlayClient implements ClientModInitializer {
 
@@ -34,13 +34,9 @@ public class BsRolePlayClient implements ClientModInitializer {
         BlockEntityRendererRegistry.register(ModBlockEntities.AMETHYST_COIN_STACK_BLOCK_ENTITY, AmethystCoinStackRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntities.NETHERITE_COIN_STACK_BLOCK_ENTITY, NetheriteCoinStackRenderer::new);
 
-        registerItemColor(ModItems.WALLET);
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) ->
+                tintIndex > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack), ModItems.WALLET);
 
         HandledScreens.register(ModScreenHandlers.WALLET_SCREEN_HANDLER, WalletScreen::new);
-    }
-
-    private void registerItemColor(Item item) {
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) ->
-                tintIndex > 0 ? -1 : ((DyeableItem) stack.getItem()).getColor(stack), item);
     }
 }

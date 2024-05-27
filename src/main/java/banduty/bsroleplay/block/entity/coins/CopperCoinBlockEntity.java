@@ -11,7 +11,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.RenderUtils;
 
 public class CopperCoinBlockEntity extends BlockEntity implements GeoBlockEntity {
-    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     public CopperCoinBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.COPPER_COIN_BLOCK_ENTITY, pos, state);
@@ -19,11 +19,11 @@ public class CopperCoinBlockEntity extends BlockEntity implements GeoBlockEntity
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController(this,"controller", 0, this::predicate));
+        controllers.add(new AnimationController<>(this,"controller", 0, this::predicate));
 
     }
 
-    private PlayState predicate(AnimationState animationState) {
+    private PlayState predicate(AnimationState<CopperCoinBlockEntity> animationState) {
         animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.STOP;
     }

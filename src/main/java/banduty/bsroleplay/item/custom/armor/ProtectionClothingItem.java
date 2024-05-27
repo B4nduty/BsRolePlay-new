@@ -1,3 +1,4 @@
+
 package banduty.bsroleplay.item.custom.armor;
 
 import banduty.bsroleplay.BsRolePlay;
@@ -19,6 +20,7 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
+
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -80,7 +82,7 @@ public class ProtectionClothingItem extends ArmorItem implements GeoItem {
 
     }
 
-    private PlayState predicate(AnimationState animationState) {
+    private PlayState predicate(AnimationState<ProtectionClothingItem> animationState) {
         animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
         return PlayState.STOP;
     }

@@ -13,8 +13,8 @@ import net.minecraft.util.Identifier;
 
 import java.util.function.Consumer;
 
-public class AdvancementsProvider extends FabricAdvancementProvider {
-    public AdvancementsProvider(FabricDataOutput output) {
+public class ModAdvancementProvider extends FabricAdvancementProvider {
+    public ModAdvancementProvider(FabricDataOutput output) {
         super(output);
     }
 

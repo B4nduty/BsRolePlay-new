@@ -11,7 +11,7 @@ import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
     public static final ItemGroup BSROLEPLAY_ITEM_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(BsRolePlay.MOD_ID,"roleplay_item"),
+            new Identifier(BsRolePlay.MOD_ID, "roleplay_item"),
             FabricItemGroup.builder().displayName(Text.literal("BsRoleplay Item"))
                     .icon(() -> new ItemStack(ModItems.ROLEPLAY_CORE)).entries((displayContext, entries) -> {
                         entries.add(ModItems.ROLEPLAY_CORE);
@@ -33,7 +33,7 @@ public class ModItemGroups {
                     .build());
 
     public static final ItemGroup BSROLEPLAY_BLOCK_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(BsRolePlay.MOD_ID,"roleplay_block"),
+            new Identifier(BsRolePlay.MOD_ID, "roleplay_block"),
             FabricItemGroup.builder().displayName(Text.literal("BsRoleplay Block"))
                     .icon(() -> new ItemStack(ModItems.TINY_BANDUTY_ITEM)).entries((displayContext, entries) -> {
                         entries.add(ModItems.TINY_BANDUTY_ITEM);
@@ -49,7 +49,7 @@ public class ModItemGroups {
                     .build());
 
     public static final ItemGroup BSROLEPLAY_ARMOR_GROUP = Registry.register(Registries.ITEM_GROUP,
-            new Identifier(BsRolePlay.MOD_ID,"roleplay_armor"),
+            new Identifier(BsRolePlay.MOD_ID, "roleplay_armor"),
             FabricItemGroup.builder().displayName(Text.literal("BsRoleplay Armor"))
                     .icon(() -> new ItemStack(ModItems.CIVIC_CROWN)).entries((displayContext, entries) -> {
                         entries.add(ModItems.POLICE_HELMET);

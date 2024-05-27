@@ -1,4 +1,4 @@
-// 1.20.4	2024-05-14T21:25:23.1094561	BsRolePlay/Model Definitions
+// 1.20.4	2024-05-22T20:51:35.7672863	BsRolePlay/Model Definitions
 2a86cf66432d1b6bd50a05f7c7d9633267434569 assets\bsroleplay\models\item\gold_coin_stack.json
 802a0e72f0bd7c12e342c87f15e773c495c47bfd assets\bsroleplay\models\item\happy_pill.json
 e8a7ff6250b6cf7b4453674fb15c8b05f76eae90 assets\bsroleplay\models\item\handcuffs.json
@@ -49,5 +49,5 @@ df0fdcacaf612440f3f137e4ff0f9273d3036e0c assets\bsroleplay\models\item\protectio
 6088d0e7b29ebb7f69c77cb7a2785a64993469b4 assets\bsroleplay\models\item\neanderthal_chestplate.json
 795f13aa1ff70ff7c4b0454cf46fb312ad8e32dc assets\bsroleplay\models\item\blue_pirate_helmet.json
 e98bf6e09e778fadfe76e4dc3dd929c0f879a975 assets\bsroleplay\models\item\copper_coin.json
-7280eca09a5bc41ca538bf310237cfe5f3bae2de assets\bsroleplay\models\item\crown.json
 5c552247f27fffde41c7043025c5bb6bf44ca581 assets\bsroleplay\models\item\poncho.json
+7280eca09a5bc41ca538bf310237cfe5f3bae2de assets\bsroleplay\models\item\crown.json

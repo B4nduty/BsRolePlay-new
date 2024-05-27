@@ -16,6 +16,7 @@ public class ModSounds {
         Identifier id = new Identifier(BsRolePlay.MOD_ID, name);
         return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
     }
+
     public static void registerSounds() {
         BsRolePlay.LOGGER.info("Registering Sounds for " + BsRolePlay.MOD_ID);
     }

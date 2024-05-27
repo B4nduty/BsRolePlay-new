@@ -16,45 +16,47 @@ import net.minecraft.world.BlockView;
 import org.jetbrains.annotations.Nullable;
 
 public class TinyBanduty extends BlockWithEntity {
-    public static final MapCodec<TinyBanduty> CODEC = TinyBanduty.createCodec(TinyBanduty::new);
-    @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
-        return CODEC;
-    }
+    public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
+    public static final MapCodec<TinyBanduty> CODEC = createCodec(TinyBanduty::new);
+    protected static final VoxelShape SHAPE = createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
 
     public TinyBanduty(Settings settings) {
         super(settings);
         this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
     }
-    protected static final VoxelShape SHAPE;
-    public static final DirectionProperty FACING;
 
-    static {
-        SHAPE = Block.createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
-        FACING = HorizontalFacingBlock.FACING;
+    @Override
+    protected MapCodec<TinyBanduty> getCodec() {
+        return CODEC;
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return SHAPE;
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public BlockState rotate(BlockState state, BlockRotation rotation) {
         return state.with(FACING, rotation.rotate(state.get(FACING)));
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public BlockState mirror(BlockState state, BlockMirror mirror) {
         return state.rotate(mirror.getRotation(state.get(FACING)));
     }
 
+    @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
     }
 
+    @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return this.getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
+        return this.getDefaultState()
+                .with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
     }
 
     @Nullable
@@ -62,6 +64,7 @@ public class TinyBanduty extends BlockWithEntity {
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
         return new TinyBandutyBlockEntity(pos, state);
     }
+
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
