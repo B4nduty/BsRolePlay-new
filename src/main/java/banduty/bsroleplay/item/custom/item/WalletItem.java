@@ -108,7 +108,7 @@ public class WalletItem extends Item implements DyeableItem {
     }
 
     @Override
-    public boolean onStackClicked(ItemStack walletStack, Slot slot, ClickType clickType, PlayerEntity player) { // todo prevent clicking when in wallet GUI
+    public boolean onStackClicked(ItemStack walletStack, Slot slot, ClickType clickType, PlayerEntity player) {
         if (clickType != ClickType.RIGHT) {
             return false;
         }
