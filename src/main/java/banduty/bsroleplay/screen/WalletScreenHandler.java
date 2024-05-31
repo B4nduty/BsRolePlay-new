@@ -1,7 +1,6 @@
 
 package banduty.bsroleplay.screen;
 
-import banduty.bsroleplay.BsRolePlay;
 import banduty.bsroleplay.item.ModItems;
 import banduty.bsroleplay.item.custom.blocks.currency.CoinItem;
 import banduty.bsroleplay.item.custom.item.WalletItem;
@@ -34,24 +33,17 @@ public class WalletScreenHandler extends ScreenHandler {
         this.addSlot(new Slot(this.inputInventory, 0, 44, 46) {
             @Override
             public boolean canInsert(ItemStack stack) {
-                if (!(stack.getItem() instanceof CoinItem coinItem)) return false;
-                if (WalletScreenHandler.this.getCurrencyAmount() < (WalletItem.MAX_COINS + 1 - (coinItem.currencyValue * stack.getCount()))) {
-                    return stack.getItem() instanceof CoinItem;
-                }
-                return false;
+                return stack.getItem() instanceof CoinItem;
             }
 
-//            @Override
-//            public ItemStack insertStack(ItemStack stack, int count) {
-//                if (!this.canInsert(stack) || !(stack.getItem() instanceof CoinItem coinItem)) return stack;
-//                WalletScreenHandler.this.currencyAmount.set(WalletScreenHandler.this.getCurrencyAmount() + coinItem.currencyValue * count);
-//                return stack.copyWithCount(stack.getCount() - count);
-//            }
-
             @Override
-            public void setStack(ItemStack stack, ItemStack previousStack) {
-                if (!this.canInsert(stack) || !(stack.getItem() instanceof CoinItem coinItem)) return;
-                WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() + coinItem.currencyValue * (stack.getCount() - previousStack.getCount()));
+            public ItemStack insertStack(ItemStack stack, int count) {
+                if (!this.canInsert(stack) || !(stack.getItem() instanceof CoinItem coinItem)) return stack;
+                int necessaryStack = Math.min(64, (WalletItem.MAX_COINS -
+                        WalletScreenHandler.this.getCurrencyAmount()) / coinItem.currencyValue);
+                WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() +
+                        coinItem.currencyValue * Math.min(count, necessaryStack));
+                return stack.copyWithCount(Math.max(0, count - necessaryStack));
             }
         });
 
@@ -75,7 +67,8 @@ public class WalletScreenHandler extends ScreenHandler {
     private void onCurrencyAmountChanged(int newCurrencyAmount) {
         for (Slot slot : this.slots) {
             if (slot instanceof CoinOutputSlot coinOutputSlot) {
-                coinOutputSlot.setStack(new ItemStack(coinOutputSlot.coinItem, newCurrencyAmount / coinOutputSlot.coinItem.currencyValue));
+                coinOutputSlot.setStack(new ItemStack(coinOutputSlot.coinItem, newCurrencyAmount /
+                        coinOutputSlot.coinItem.currencyValue));
             }
         }
     }
@@ -112,16 +105,15 @@ public class WalletScreenHandler extends ScreenHandler {
             ItemStack newStack = slot.getStack();
             originalStack = newStack.copy();
             if (1 <= slotIndex && slotIndex < 5) {
-                if (!this.insertItem(newStack, 5, 41, true)) { // if in output slots, insert to player inventory
+                if (!this.insertItem(newStack, 5, 41, true)) {
                     return ItemStack.EMPTY;
                 }
-                slot.onQuickTransfer(newStack, originalStack); // and call onQuickTransfer
-            } else if (5 <= slotIndex && slotIndex < 41 ? // somewhere in player inventory
-                    !this.insertItem(newStack, 0, 1, false) && // if in player inventory, insert to input slot
+                slot.onQuickTransfer(newStack, originalStack);
+            } else if (5 <= slotIndex && slotIndex < 41 ?
                             (slotIndex < 32 ?
-                                    !this.insertItem(newStack, 32, 41, false) : // if in main player inventory and can't insert into input slot, insert into hotbar
-                                    !this.insertItem(newStack, 5, 32, false)) : // if in hotbar and can't insert into input slot, insert to main player inventory
-                    !this.insertItem(newStack, 5, 41, false) // if in input slot, insert to player inventory
+                                    !this.insertItem(newStack, 32, 41, false) :
+                                    !this.insertItem(newStack, 5, 32, false)) :
+                    !this.insertItem(newStack, 5, 41, false)
             ) {
                 return ItemStack.EMPTY;
             }
@@ -137,6 +129,11 @@ public class WalletScreenHandler extends ScreenHandler {
 
             if (1 <= slotIndex && slotIndex < 5) {
                 player.dropItem(newStack, false);
+            }
+
+            if (slot instanceof CoinOutputSlot coinOutputSlot) {
+                coinOutputSlot.setStack(new ItemStack(coinOutputSlot.coinItem, getCurrencyAmount() /
+                        coinOutputSlot.coinItem.currencyValue));
             }
         }
 
@@ -180,37 +177,15 @@ public class WalletScreenHandler extends ScreenHandler {
         @Override
         public void onTakeItem(PlayerEntity player, ItemStack takenStack) {
             super.onTakeItem(player, takenStack);
-            WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() - this.coinItem.currencyValue * takenStack.getCount());
-            BsRolePlay.LOGGER.info("onTakeItem on {} | takenStack: {} | current stack: {} | after super", player.getWorld().isClient() ? "client" : "server", takenStack, this.getStack());
-        }
-
-        @Override
-        public ItemStack takeStack(int amount) {
-            BsRolePlay.LOGGER.info("takeStack | amount: {} | current stack: {} | before super", amount, this.getStack());
-            return super.takeStack(amount);
-        }
-
-        @Override
-        protected void onTake(int amount) {
-            super.onTake(amount);
-            BsRolePlay.LOGGER.info("onTake | amount: {} | current stack: {}", amount, this.getStack());
+            WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() -
+                    this.coinItem.currencyValue * takenStack.getCount());
         }
 
         @Override
         public void onQuickTransfer(ItemStack newItem, ItemStack original) {
-            WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() - this.coinItem.currencyValue * original.getCount());
-        }
-
-        @Override
-        protected void onCrafted(ItemStack stack) {
-            super.onCrafted(stack);
-            BsRolePlay.LOGGER.info("onCrafted 1 | stack: {} | current stack: {}", stack, this.getStack());
-        }
-
-        @Override
-        protected void onCrafted(ItemStack originalStack, int amount) {
-            super.onCrafted(originalStack, amount);
-            BsRolePlay.LOGGER.info("onCrafted 2 | originalStack: {} | taken amount: {} | current stack: {}", originalStack, amount, this.getStack());
+            super.onQuickTransfer(newItem, original);
+            WalletScreenHandler.this.setCurrencyAmount(WalletScreenHandler.this.getCurrencyAmount() -
+                    this.coinItem.currencyValue * (original.getCount() - newItem.getCount()));
         }
 
         @Override

@@ -9,7 +9,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
@@ -21,9 +20,7 @@ public class WalletScreen extends HandledScreen<WalletScreenHandler> {
 
     public WalletScreen(WalletScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
-//        this.backgroundWidth = 214;
         this.backgroundWidth = 194;
-//        this.backgroundHeight = 166;
         this.backgroundHeight = 165;
         this.playerInventoryTitleY = 1000;
         this.titleY = 1000;
@@ -61,19 +58,5 @@ public class WalletScreen extends HandledScreen<WalletScreenHandler> {
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal(this.handler.getCurrencyAmount() + " RP"), this.x + 142, this.y + 12, 0xffffff);
         context.drawCenteredTextWithShadow(this.textRenderer, Text.literal("Wallet"), this.x + 52, this.y + 10, 0xffffff);
         drawMouseoverTooltip(context, mouseX, mouseY);
-    }
-
-    @Override
-    protected void drawSlot(DrawContext context, Slot slot) {
-        super.drawSlot(context, slot);
-        if (!(slot instanceof WalletScreenHandler.CoinOutputSlot) || slot.getStack().getCount() > 1) return;
-        String stackCount = String.valueOf(slot.getStack().getCount());
-        context.getMatrices().push();
-        context.getMatrices().translate(0.0f, 0.0f, 100.0f);
-
-        context.getMatrices().translate(0.0f, 0.0f, 200.0f);
-        context.drawText(this.textRenderer, stackCount, slot.x + 19 - 2 - this.textRenderer.getWidth(stackCount), slot.y + 6 + 3, 0xFFFFFF, true);
-
-        context.getMatrices().pop();
     }
 }
