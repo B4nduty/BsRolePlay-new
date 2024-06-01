@@ -2,18 +2,18 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "N": {
-      "item": "minecraft:nether_star"
-    },
-    "P": {
+    "F": {
       "item": "bsroleplay:fusion_core"
+    },
+    "S": {
+      "item": "minecraft:spider_eye"
     }
   },
   "pattern": [
-    "N",
-    "P"
+    "S",
+    "F"
   ],
   "result": {
-    "item": "bsroleplay:sad_pill"
+    "item": "bsroleplay:invkit"
   }
 }

@@ -13,12 +13,12 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_nether_star": {
+    "has_spider_eye": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:nether_star"
+              "minecraft:spider_eye"
             ]
           }
         ]
@@ -27,7 +27,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:sad_pill"
+        "recipe": "minecraft:invkit"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -35,13 +35,13 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_nether_star",
+      "has_spider_eye",
       "has_fusion_core"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:sad_pill"
+      "minecraft:invkit"
     ]
   }
 }
