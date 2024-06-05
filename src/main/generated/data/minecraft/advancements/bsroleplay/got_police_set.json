@@ -80,8 +80,7 @@
     },
     "frame": "goal",
     "icon": {
-      "item": "bsroleplay:police_baton",
-      "nbt": "{Damage:0}"
+      "item": "bsroleplay:police_baton"
     },
     "title": {
       "translate": "advancement.police_set.title"

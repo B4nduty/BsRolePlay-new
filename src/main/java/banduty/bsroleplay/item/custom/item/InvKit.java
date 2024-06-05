@@ -14,8 +14,6 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 public class InvKit extends Item {
 
     public InvKit(Settings settings) {
