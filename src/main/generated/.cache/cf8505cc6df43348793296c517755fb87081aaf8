@@ -1,4 +1,4 @@
-// 1.20.4	2024-06-27T11:36:36.8958197	BsRolePlay/Model Definitions
+// 1.20.4	2024-06-29T16:43:53.2881263	BsRolePlay/Model Definitions
 2a86cf66432d1b6bd50a05f7c7d9633267434569 assets\bsroleplay\models\item\gold_coin_stack.json
 e8a7ff6250b6cf7b4453674fb15c8b05f76eae90 assets\bsroleplay\models\item\handcuffs.json
 acb694ad46b5a274ee03fb7a83d1a4ac800e5a0d assets\bsroleplay\models\item\protection_leggings.json
@@ -8,6 +8,7 @@ e7444d93eacbb3bc9441ebc9e68303a6866a8d6a assets\bsroleplay\models\item\red_prote
 de7e6a34dfc87d49a5a5c189346e10149aadb352 assets\bsroleplay\models\item\police_leggings.json
 5cfb8ca346b4c3f0394aadb3b6da7a1e09ad46be assets\bsroleplay\models\item\lawyer_leggings_black.json
 581523d0dfedce690dcffc025548baaa4a42d092 assets\bsroleplay\models\item\blue_pirate_leggings.json
+bdb5621e348f402bb8aa5b226108beed060bfeb8 assets\bsroleplay\models\item\spectral_scanner.json
 1ab7bff9b1a177fea781c63640327add6a9c4cd6 assets\bsroleplay\models\item\lawyer_blackgold_chestplate.json
 989eb9d93e0b8fa54c4c6e0b324b11d5d080731f assets\bsroleplay\models\item\fusion_core.json
 6849e37ac445f69c8aef0448cce5d7716bcb46c2 assets\bsroleplay\models\item\funeral_mask.json
@@ -51,6 +52,6 @@ df0fdcacaf612440f3f137e4ff0f9273d3036e0c assets\bsroleplay\models\item\protectio
 2ff6ae5d50b0f1e4c081328d1d9776c4defea74b assets\bsroleplay\models\item\red_protection_leggings.json
 4739802d42accd7b42c82ceb3aa6678e40719621 assets\bsroleplay\models\item\healkit.json
 e98bf6e09e778fadfe76e4dc3dd929c0f879a975 assets\bsroleplay\models\item\copper_coin.json
-5c552247f27fffde41c7043025c5bb6bf44ca581 assets\bsroleplay\models\item\poncho.json
 7280eca09a5bc41ca538bf310237cfe5f3bae2de assets\bsroleplay\models\item\crown.json
+5c552247f27fffde41c7043025c5bb6bf44ca581 assets\bsroleplay\models\item\poncho.json
 0098e212be20e8d65e5b9a4fdea1e91142448571 assets\bsroleplay\models\item\invkit.json

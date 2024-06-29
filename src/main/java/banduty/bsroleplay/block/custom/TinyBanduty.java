@@ -18,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 public class TinyBanduty extends BlockWithEntity {
     public static final DirectionProperty FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<TinyBanduty> CODEC = createCodec(TinyBanduty::new);
-    protected static final VoxelShape SHAPE = createCuboidShape(0.0, 0.0, 0.0, 16.0, 16.0, 16.0);
+    protected static final VoxelShape SHAPE = createCuboidShape(5.75, 0.0, 5.75, 10.25, 5.5, 10.25);
 
     public TinyBanduty(Settings settings) {
         super(settings);
