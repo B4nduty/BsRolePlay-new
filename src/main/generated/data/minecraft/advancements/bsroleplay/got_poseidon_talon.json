@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:bsroleplay/got_roleplay_core",
   "criteria": {
-    "got_hook": {
+    "got_poseidon_talon": {
       "conditions": {
         "items": [
           {
             "items": [
-              "bsroleplay:hook"
+              "bsroleplay:poseidon_talon"
             ]
           }
         ]
@@ -16,19 +16,19 @@
   },
   "display": {
     "description": {
-      "translate": "advancement.hook.desc"
+      "translate": "advancement.poseidonTalon.desc"
     },
     "frame": "goal",
     "icon": {
-      "item": "bsroleplay:hook"
+      "item": "bsroleplay:poseidon_talon"
     },
     "title": {
-      "translate": "advancement.hook.title"
+      "translate": "advancement.poseidonTalon.title"
     }
   },
   "requirements": [
     [
-      "got_hook"
+      "got_poseidon_talon"
     ]
   ],
   "sends_telemetry_event": true
